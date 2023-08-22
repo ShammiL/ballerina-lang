@@ -411,7 +411,9 @@ public class CommandUtil {
         Path pkgCacheParent = balaCache.resolve(orgName).resolve(templatePackageName);
         try {
             pullPackageFromRemote(orgName, templatePackageName, version, pkgCacheParent);
+            errStream.println("successfully pulled");
         } catch (PackageAlreadyExistsException e) {
+            errStream.println("package already exists");
             if (version == null) {
                 List<PackageVersion> packageVersions = getPackageVersions(pkgCacheParent);
                 PackageVersion latest = findLatest(packageVersions);
