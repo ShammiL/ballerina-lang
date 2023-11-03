@@ -46,8 +46,7 @@ jobs:
           packageUser: ${{ github.actor }}
           packagePAT: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew :ballerina-cli:test --tests 
-          "io.ballerina.cli.cmd.BuildCommandTest.testBuildProjectWithBuildTool" --scan
+          ./gradlew :ballerina-cli:test --tests "io.ballerina.cli.cmd.BuildCommandTest.testBuildProjectWithBuildTool" --scan
 
       - name: Notify failure
         if: ${{ failure() }}
