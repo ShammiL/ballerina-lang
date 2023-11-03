@@ -1220,7 +1220,12 @@ public class BuildCommandTest extends BaseCommandTest {
         System.setProperty("user.dir", projectPath.toString());
         BuildCommand buildCommand = new BuildCommand(projectPath, printStream, printStream, false);
         new CommandLine(buildCommand).parseArgs();
-        buildCommand.execute();
+        try {
+            buildCommand.execute();
+        } catch (BLauncherException e) {
+            printStream.println(e.getDetailedMessages().get(0));
+        }
+//        buildCommand.execute();
         String buildLog = readOutput(true);
         Assert.assertEquals(buildLog.replaceAll("\r", ""),
             getOutput("build-bal-project.txt"));

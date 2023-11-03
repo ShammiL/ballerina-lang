@@ -208,6 +208,8 @@ public class CompileTask implements Task {
             boolean hasErrors = false;
             for (Diagnostic d : diagnostics) {
                 if (d.diagnosticInfo().severity().equals(DiagnosticSeverity.ERROR)) {
+                    this.out.println(d);
+                    err.println(d);
                     hasErrors = true;
                 }
                 if (d.diagnosticInfo().code() == null || !d.diagnosticInfo().code().equals(
